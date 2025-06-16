@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char estado;
+    char codigo[4];
+    char nome[50];
+    int populacao;
+    float area;
+    float pib;
+    int pontos_turisticos;
+} Carta;
+
+void exibirCarta(Carta c) {
+    printf("\n--- %s (%s) ---\n", c.nome, c.codigo);
+    printf("Estado: %c\n", c.estado);
+    printf("População: %d\n", c.populacao);
+    printf("Área: %.2f km²\n", c.area);
+    printf("PIB: R$ %.2f bilhões\n", c.pib);
+    printf("Pontos Turísticos: %d\n", c.pontos_turisticos);
+}
+
+int main() {
+    Carta carta1 = {'A', "A01", "São Paulo", 12325000, 1521.11, 699.28, 50};
+    Carta carta2 = {'B', "B02", "Rio de Janeiro", 6748000, 1200.25, 300.50, 30};
+
+    int escolha;
+
+    printf("Escolha o atributo para comparar:\n");
+    printf("1 - População\n");
+    printf("2 - Área\n");
+    printf("3 - PIB\n");
+    printf("4 - Pontos Turísticos\n");
+    printf("Digite sua escolha: ");
+    scanf("%d", &escolha);
+
+    printf("\nCarta 1:");
+    exibirCarta(carta1);
+    printf("\nCarta 2:");
+    exibirCarta(carta2);
+
+    printf("\nResultado:\n");
+
+    switch (escolha) {
+        case 1:
+            if (carta1.populacao > carta2.populacao)
+                printf("São Paulo vence pela maior população!\n");
+            else
+                printf("Rio de Janeiro vence pela maior população!\n");
+            break;
+        case 2:
+            if (carta1.area > carta2.area)
+                printf("São Paulo vence pela maior área!\n");
+            else
+                printf("Rio de Janeiro vence pela maior área!\n");
+            break;
+        case 3:
+            if (carta1.pib > carta2.pib)
+                printf("São Paulo vence pelo maior PIB!\n");
+            else
+                printf("Rio de Janeiro vence pelo maior PIB!\n");
+            break;
+        case 4:
+            if (carta1.pontos_turisticos > carta2.pontos_turisticos)
+                printf("São Paulo vence pelos pontos turísticos!\n");
+            else
+                printf("Rio de Janeiro vence pelos pontos turísticos!\n");
+            break;
+        default:
+            printf("Escolha inválida!\n");
+    }
+
+    // PAUSA antes de encerrar
+    printf("\nPressione ENTER para sair...");
+    getchar(); // consome o \n deixado pelo scanf
+    getchar(); // espera o usuário apertar ENTER
+
+    return 0;
+}
